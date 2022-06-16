@@ -45,7 +45,10 @@ namespace addressbook_web_tests
             OpenHomePage();
             Login(new AccountData("admin", "secret"));
             GoToAccountCreationTests();
-            FillAccountForm();
+            AccountCreationData group = new AccountCreationData("aaa", "bbb");
+            group.Lastname = "bbb";
+            group.Nickname = "ccc";
+            FillAccountForm(group);
             SubmitAccountCreation();
             ReturnToHomePage();
             Logout();
@@ -66,16 +69,20 @@ namespace addressbook_web_tests
             driver.FindElement(By.XPath("//input[21]")).Click();
         }
 
-        private void FillAccountForm()
+        private void FillAccountForm(AccountCreationData group)
         {
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys("Name");
+            driver.FindElement(By.Name("firstname")).SendKeys(group.Firstname);
             driver.FindElement(By.Name("middlename")).Click();
             driver.FindElement(By.Name("middlename")).Clear();
-            driver.FindElement(By.Name("middlename")).SendKeys("Middle");
+            driver.FindElement(By.Name("middlename")).SendKeys(group.MIddlename);
             driver.FindElement(By.Name("lastname")).Click();
+            driver.FindElement(By.Name("lastname")).Clear();
+            driver.FindElement(By.Name("lastname")).SendKeys(group.Lastname);
             driver.FindElement(By.Name("nickname")).Click();
+            driver.FindElement(By.Name("nickname")).Clear();
+            driver.FindElement(By.Name("nickname")).SendKeys(group.Nickname);
             driver.FindElement(By.Name("title")).Click();
             driver.FindElement(By.Name("company")).Click();
             driver.FindElement(By.Name("address")).Click();
