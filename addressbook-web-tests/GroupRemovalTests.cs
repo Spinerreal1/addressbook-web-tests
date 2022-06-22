@@ -58,7 +58,7 @@ namespace addressbook_web_tests
 
         private void SelectGroup()
         {
-            driver.FindElement(By.XPath("//span[3]/input")).Click();
+            driver.FindElement(By.Name("selected[]")).Click();
         }
 
         private void GoToGroupsPage()
