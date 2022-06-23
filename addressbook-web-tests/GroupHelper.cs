@@ -9,14 +9,14 @@ using OpenQA.Selenium.Support.UI;
 
 namespace addressbook_web_tests
 {
-    public class GroupHelper
+    public class GroupHelper : HelperBase
     {
-        private IWebDriver driver;
 
         public GroupHelper(IWebDriver driver)
+            : base(driver)
         {
-            this.driver = driver;
         }
+
         public void ReturnToGroupsPage()
         {
             driver.FindElement(By.LinkText("group page")).Click();

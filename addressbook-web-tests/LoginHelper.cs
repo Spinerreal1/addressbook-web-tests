@@ -11,13 +11,11 @@ namespace addressbook_web_tests
 {
     public class LoginHelper : HelperBase
     {
-        private IWebDriver driver;
-
-        public LoginHelper(IWebDriver driver) : base(driver)
-       
+        public LoginHelper(IWebDriver driver)
+            : base(driver)
         {
-            this.driver = driver;
         }
+
         public void Login(AccountData account)
         {
             driver.FindElement(By.Name("user")).Click();

@@ -9,14 +9,14 @@ using OpenQA.Selenium.Support.UI;
 
 namespace addressbook_web_tests
 {
-    public class LogoutHelper
+    public class LogoutHelper : HelperBase
     {
-        private IWebDriver driver;
 
-        public LogoutHelper(IWebDriver driver)
+        public LogoutHelper(IWebDriver driver) 
+            : base(driver)
         {
-            this.driver = driver;
         }
+
         public void Logout()
         {
             driver.FindElement(By.LinkText("Logout")).Click();
