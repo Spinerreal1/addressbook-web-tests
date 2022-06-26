@@ -24,6 +24,7 @@ namespace addressbook_web_tests
 
         public ContactHelper Create(AccountCreationData group)
         {
+            manager.Navigator.GoToGroupsPage();
             GoToAccountCreationTests();
             FillAccountForm(group);
             SubmitAccountCreation();
@@ -60,18 +61,10 @@ namespace addressbook_web_tests
 
         public ContactHelper FillAccountForm(AccountCreationData group)
         {
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(group.Firstname);
-            driver.FindElement(By.Name("middlename")).Click();
-            driver.FindElement(By.Name("middlename")).Clear();
-            driver.FindElement(By.Name("middlename")).SendKeys(group.MIddlename);
-            driver.FindElement(By.Name("lastname")).Click();
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(group.Lastname);
-            driver.FindElement(By.Name("nickname")).Click();
-            driver.FindElement(By.Name("nickname")).Clear();
-            driver.FindElement(By.Name("nickname")).SendKeys(group.Nickname);
+            Type(By.Name("firstname"), group.Firstname);
+            Type(By.Name("middlename"), group.MIddlename);
+            Type(By.Name("lastname"), group.Lastname);
+            Type(By.Name("nickname"), group.Nickname);
             driver.FindElement(By.Name("title")).Click();
             driver.FindElement(By.Name("company")).Click();
             driver.FindElement(By.Name("address")).Click();
@@ -97,18 +90,10 @@ namespace addressbook_web_tests
         }
         public ContactHelper ChangeAccountForm(AccountCreationData newData)
         {
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(newData.Firstname);
-            driver.FindElement(By.Name("middlename")).Click();
-            driver.FindElement(By.Name("middlename")).Clear();
-            driver.FindElement(By.Name("middlename")).SendKeys(newData.MIddlename);
-            driver.FindElement(By.Name("lastname")).Click();
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(newData.Lastname);
-            driver.FindElement(By.Name("nickname")).Click();
-            driver.FindElement(By.Name("nickname")).Clear();
-            driver.FindElement(By.Name("nickname")).SendKeys(newData.Nickname);
+            Type(By.Name("firstname"), newData.Firstname);
+            Type(By.Name("middlename"), newData.MIddlename);
+            Type(By.Name("lastname"), newData.Lastname);
+            Type(By.Name("nickname"), newData.Nickname);
             driver.FindElement(By.Name("company")).Click();
             driver.FindElement(By.Name("title")).Click();
             driver.FindElement(By.Name("address")).Click();
