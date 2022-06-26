@@ -16,15 +16,14 @@ namespace addressbook_web_tests
         [Test]
         public void AccountCreationTest()
         {
-            app.Navigator.OpenHomePage();
-            app.Auth.Login(new AccountData("admin", "secret"));
-            app.AccountHelper.GoToAccountCreationTests();
             AccountCreationData group = new AccountCreationData("aaa", "bbb");
             group.Lastname = "bbb";
             group.Nickname = "ccc";
-            app.AccountHelper.FillAccountForm(group);
-            app.AccountHelper.SubmitAccountCreation();
-            app.AccountHelper.ReturnToHomePage();
+            app.AccountHelper
+                .GoToAccountCreationTests()
+                .FillAccountForm(group)
+                .SubmitAccountCreation()
+                .ReturnToHomePage();
             app.LogoutHelper.Logout();
         }
     }

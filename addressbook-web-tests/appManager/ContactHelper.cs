@@ -9,24 +9,26 @@ using OpenQA.Selenium.Support.UI;
 
 namespace addressbook_web_tests
 {
-    public class AccountHelper : HelperBase
+    public class ContactHelper : HelperBase
     {
-        public AccountHelper(IWebDriver driver)
-            : base(driver)
+        public ContactHelper(ApplicationManager manager)
+            : base(manager)
         {
         }
 
-        public void ReturnToHomePage()
+        public ContactHelper ReturnToHomePage()
         {
             driver.FindElement(By.LinkText("home page")).Click();
+            return this;
         }
 
-        public void SubmitAccountCreation()
+        public ContactHelper SubmitAccountCreation()
         {
             driver.FindElement(By.XPath("//input[21]")).Click();
+            return this;
         }
 
-        public void FillAccountForm(AccountCreationData group)
+        public ContactHelper FillAccountForm(AccountCreationData group)
         {
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
@@ -61,11 +63,13 @@ namespace addressbook_web_tests
             driver.FindElement(By.Name("address2")).Click();
             driver.FindElement(By.Name("phone2")).Click();
             driver.FindElement(By.Name("notes")).Click();
+            return this;
         }
 
-        public void GoToAccountCreationTests()
+        public ContactHelper GoToAccountCreationTests()
         {
             driver.FindElement(By.LinkText("add new")).Click();
+            return this;
         }
     }
 }
