@@ -17,6 +17,7 @@ namespace addressbook_web_tests.tests
             newData.Header = "lll";
             newData.Footer = "www";
             app.GroupHelper.Modify(1, newData);
+            app.LogoutHelper.Logout();
         }
 
     }

@@ -3,9 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
+
 
 namespace addressbook_web_tests
 {
@@ -19,11 +17,18 @@ namespace addressbook_web_tests
             AccountCreationData group = new AccountCreationData("aaa", "bbb");
             group.Lastname = "bbb";
             group.Nickname = "ccc";
-            app.AccountHelper
-                .GoToAccountCreationTests()
-                .FillAccountForm(group)
-                .SubmitAccountCreation()
-                .ReturnToHomePage();
+
+            app.ContactHelper.Create(group);
+            app.LogoutHelper.Logout();
+        }
+        [Test]
+        public void EmptyAccountCreationTest()
+        {
+            AccountCreationData group = new AccountCreationData("", "");
+            group.Lastname = "";
+            group.Nickname = "";
+
+            app.ContactHelper.Create(group);
             app.LogoutHelper.Logout();
         }
     }

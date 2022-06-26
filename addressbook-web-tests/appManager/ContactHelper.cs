@@ -22,6 +22,36 @@ namespace addressbook_web_tests
             return this;
         }
 
+        public ContactHelper Create(AccountCreationData group)
+        {
+            GoToAccountCreationTests();
+            FillAccountForm(group);
+            SubmitAccountCreation();
+            ReturnToHomePage();
+            return this;
+        }
+        public ContactHelper Remove(int p)
+        {
+            manager.Navigator.GoToGroupsPage();
+            OpenHomePage();
+            SelectContact(p);
+            DeleteContact();
+            CloseAllert();
+            manager.LogoutHelper.Logout();
+            return this;
+        }
+        public ContactHelper Modify(int p, AccountCreationData newData)
+        {
+            manager.Navigator.GoToGroupsPage();
+            OpenHomePage();
+            SelectContact(p);
+            EditContact();
+            ChangeAccountForm(newData);
+            SubmitAccountModify();
+            manager.LogoutHelper.Logout();
+            return this;
+        }
+
         public ContactHelper SubmitAccountCreation()
         {
             driver.FindElement(By.XPath("//input[21]")).Click();
@@ -65,10 +95,76 @@ namespace addressbook_web_tests
             driver.FindElement(By.Name("notes")).Click();
             return this;
         }
+        public ContactHelper ChangeAccountForm(AccountCreationData newData)
+        {
+            driver.FindElement(By.Name("firstname")).Click();
+            driver.FindElement(By.Name("firstname")).Clear();
+            driver.FindElement(By.Name("firstname")).SendKeys(newData.Firstname);
+            driver.FindElement(By.Name("middlename")).Click();
+            driver.FindElement(By.Name("middlename")).Clear();
+            driver.FindElement(By.Name("middlename")).SendKeys(newData.MIddlename);
+            driver.FindElement(By.Name("lastname")).Click();
+            driver.FindElement(By.Name("lastname")).Clear();
+            driver.FindElement(By.Name("lastname")).SendKeys(newData.Lastname);
+            driver.FindElement(By.Name("nickname")).Click();
+            driver.FindElement(By.Name("nickname")).Clear();
+            driver.FindElement(By.Name("nickname")).SendKeys(newData.Nickname);
+            driver.FindElement(By.Name("company")).Click();
+            driver.FindElement(By.Name("title")).Click();
+            driver.FindElement(By.Name("address")).Click();
+            driver.FindElement(By.Name("home")).Click();
+            driver.FindElement(By.Name("mobile")).Click();
+            driver.FindElement(By.Name("work")).Click();
+            driver.FindElement(By.Name("fax")).Click();
+            driver.FindElement(By.Name("email")).Click();
+            driver.FindElement(By.Name("email2")).Click();
+            driver.FindElement(By.Name("email3")).Click();
+            driver.FindElement(By.Name("homepage")).Click();
+            driver.FindElement(By.Name("bday")).Click();
+            driver.FindElement(By.Name("bmonth")).Click();
+            driver.FindElement(By.Name("byear")).Click();
+            driver.FindElement(By.Name("aday")).Click();
+            driver.FindElement(By.Name("amonth")).Click();
+            driver.FindElement(By.Name("ayear")).Click();
+            driver.FindElement(By.Name("address2")).Click();
+            driver.FindElement(By.Name("phone2")).Click();
+            driver.FindElement(By.Name("notes")).Click();
+            return this;
+        }
 
         public ContactHelper GoToAccountCreationTests()
         {
             driver.FindElement(By.LinkText("add new")).Click();
+            return this;
+        }
+        public ContactHelper OpenHomePage() 
+        {
+            driver.FindElement(By.LinkText("home")).Click();
+            return this;
+        }
+        public ContactHelper SelectContact(int index)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            return this;
+        }
+        public ContactHelper DeleteContact()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            return this;
+        }
+        public ContactHelper CloseAllert() 
+        {
+            driver.SwitchTo().Alert().Accept();
+            return this;
+        }
+        public ContactHelper SubmitAccountModify() 
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+        public ContactHelper EditContact()
+        {
+            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
             return this;
         }
     }
