@@ -10,170 +10,22 @@ using OpenQA.Selenium.Support.UI;
 namespace addressbook_web_tests
 {
     [TestFixture]
-    public class AccountCreationTests
+    public class AccountCreationTests : TestBase
     {
-        private IWebDriver driver;
-        private StringBuilder verificationErrors;
-        private string baseURL;
-        private bool acceptNextAlert = true;
-
-        [SetUp]
-        public void SetupTest()
-        {
-            driver = new FirefoxDriver();
-            baseURL = "http://localhost/addressbook";
-            verificationErrors = new StringBuilder();
-        }
-
-        [TearDown]
-        public void TeardownTest()
-        {
-            try
-            {
-                driver.Quit();
-            }
-            catch (Exception)
-            {
-                // Ignore errors if unable to close the browser
-            }
-            Assert.AreEqual("", verificationErrors.ToString());
-        }
 
         [Test]
         public void AccountCreationTest()
         {
-            OpenHomePage();
-            Login(new AccountData("admin", "secret"));
-            GoToAccountCreationTests();
+            app.Navigator.OpenHomePage();
+            app.Auth.Login(new AccountData("admin", "secret"));
+            app.AccountHelper.GoToAccountCreationTests();
             AccountCreationData group = new AccountCreationData("aaa", "bbb");
             group.Lastname = "bbb";
             group.Nickname = "ccc";
-            FillAccountForm(group);
-            SubmitAccountCreation();
-            ReturnToHomePage();
-            Logout();
-        }
-
-        private void Logout()
-        {
-            driver.FindElement(By.LinkText("Logout")).Click();
-        }
-
-        private void ReturnToHomePage()
-        {
-            driver.FindElement(By.LinkText("home page")).Click();
-        }
-
-        private void SubmitAccountCreation()
-        {
-            driver.FindElement(By.XPath("//input[21]")).Click();
-        }
-
-        private void FillAccountForm(AccountCreationData group)
-        {
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(group.Firstname);
-            driver.FindElement(By.Name("middlename")).Click();
-            driver.FindElement(By.Name("middlename")).Clear();
-            driver.FindElement(By.Name("middlename")).SendKeys(group.MIddlename);
-            driver.FindElement(By.Name("lastname")).Click();
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(group.Lastname);
-            driver.FindElement(By.Name("nickname")).Click();
-            driver.FindElement(By.Name("nickname")).Clear();
-            driver.FindElement(By.Name("nickname")).SendKeys(group.Nickname);
-            driver.FindElement(By.Name("title")).Click();
-            driver.FindElement(By.Name("company")).Click();
-            driver.FindElement(By.Name("address")).Click();
-            driver.FindElement(By.Name("home")).Click();
-            driver.FindElement(By.Name("mobile")).Click();
-            driver.FindElement(By.Name("work")).Click();
-            driver.FindElement(By.Name("fax")).Click();
-            driver.FindElement(By.Name("email")).Click();
-            driver.FindElement(By.Name("email2")).Click();
-            driver.FindElement(By.Name("email3")).Click();
-            driver.FindElement(By.Name("homepage")).Click();
-            driver.FindElement(By.Name("bday")).Click();
-            driver.FindElement(By.Name("bmonth")).Click();
-            driver.FindElement(By.Name("byear")).Click();
-            driver.FindElement(By.Name("aday")).Click();
-            driver.FindElement(By.Name("amonth")).Click();
-            driver.FindElement(By.Name("ayear")).Click();
-            driver.FindElement(By.Name("new_group")).Click();
-            driver.FindElement(By.Name("address2")).Click();
-            driver.FindElement(By.Name("phone2")).Click();
-            driver.FindElement(By.Name("notes")).Click();
-        }
-
-        private void GoToAccountCreationTests()
-        {
-            driver.FindElement(By.LinkText("add new")).Click();
-        }
-
-        private void Login(AccountData account)
-        {
-            driver.FindElement(By.Name("user")).Click();
-            driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys(account.Username);
-            driver.FindElement(By.Id("LoginForm")).Click();
-            driver.FindElement(By.Name("pass")).Click();
-            driver.FindElement(By.Name("pass")).Clear();
-            driver.FindElement(By.Name("pass")).SendKeys(account.Password);
-            driver.FindElement(By.XPath("//input[@value='Login']")).Click();
-        }
-
-        private void OpenHomePage()
-        {
-            driver.Navigate().GoToUrl(baseURL);
-        }
-
-        private bool IsElementPresent(By by)
-        {
-            try
-            {
-                driver.FindElement(by);
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
-        }
-
-        private bool IsAlertPresent()
-        {
-            try
-            {
-                driver.SwitchTo().Alert();
-                return true;
-            }
-            catch (NoAlertPresentException)
-            {
-                return false;
-            }
-        }
-
-        private string CloseAlertAndGetItsText()
-        {
-            try
-            {
-                IAlert alert = driver.SwitchTo().Alert();
-                string alertText = alert.Text;
-                if (acceptNextAlert)
-                {
-                    alert.Accept();
-                }
-                else
-                {
-                    alert.Dismiss();
-                }
-                return alertText;
-            }
-            finally
-            {
-                acceptNextAlert = true;
-            }
+            app.AccountHelper.FillAccountForm(group);
+            app.AccountHelper.SubmitAccountCreation();
+            app.AccountHelper.ReturnToHomePage();
+            app.LogoutHelper.Logout();
         }
     }
 }

@@ -19,6 +19,7 @@ namespace addressbook_web_tests
         protected NavigationHelper navigator;
         protected GroupHelper groupHelper;
         protected LogoutHelper logoutHelper;
+        protected AccountHelper accountHelper;
 
         public ApplicationManager() 
         {
@@ -28,6 +29,7 @@ namespace addressbook_web_tests
             logoutHelper = new LogoutHelper(driver);
             navigator = new NavigationHelper(driver, baseURL);
             groupHelper = new GroupHelper(driver);
+            accountHelper = new AccountHelper(driver);
         }
 
         public void Stop()
@@ -67,6 +69,13 @@ namespace addressbook_web_tests
             get 
             {
                 return logoutHelper;
+            }
+        }
+        public AccountHelper AccountHelper 
+        {
+            get 
+            {
+                return accountHelper;
             }
         }
     }

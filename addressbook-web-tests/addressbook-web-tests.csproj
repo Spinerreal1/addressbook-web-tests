@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppManager\AccountHelper.cs" />
     <Compile Include="Model\AccountData.cs" />
     <Compile Include="AppManager\ApplicationManager.cs" />
     <Compile Include="Figures\Circle.cs" />
