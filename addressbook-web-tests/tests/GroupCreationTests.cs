@@ -20,7 +20,6 @@ namespace addressbook_web_tests
             group.Footer = "ccc";
 
             app.GroupHelper.Create(group);
-            app.LogoutHelper.Logout();
         }
         [Test]
         public void EmptyGroupCreationTest()
@@ -31,7 +30,6 @@ namespace addressbook_web_tests
             group.Footer = "";
 
             app.GroupHelper.Create(group);
-            app.LogoutHelper.Logout();
         }
     }
 }

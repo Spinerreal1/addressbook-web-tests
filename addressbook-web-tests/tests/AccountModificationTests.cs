@@ -19,7 +19,6 @@ namespace addressbook_web_tests.Tests
 
 
             app.ContactHelper.Modify(1, newData);
-            app.LogoutHelper.Logout();
         }
 
     }

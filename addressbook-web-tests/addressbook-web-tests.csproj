@@ -76,7 +76,6 @@
     <Compile Include="Tests\GroupRemovalTests.cs" />
     <Compile Include="AppManager\HelperBase.cs" />
     <Compile Include="AppManager\LoginHelper.cs" />
-    <Compile Include="AppManager\LogoutHelper.cs" />
     <Compile Include="AppManager\NavigationHelper.cs" />
     <Compile Include="Figures\Square.cs" />
     <Compile Include="Properties\Settings.Designer.cs">

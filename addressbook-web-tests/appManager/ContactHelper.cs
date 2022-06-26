@@ -38,7 +38,6 @@ namespace addressbook_web_tests
             SelectContact(p);
             DeleteContact();
             CloseAllert();
-            manager.LogoutHelper.Logout();
             return this;
         }
         public ContactHelper Modify(int p, AccountCreationData newData)
@@ -49,7 +48,6 @@ namespace addressbook_web_tests
             EditContact();
             ChangeAccountForm(newData);
             SubmitAccountModify();
-            manager.LogoutHelper.Logout();
             return this;
         }
 

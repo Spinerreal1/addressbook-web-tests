@@ -23,7 +23,6 @@ namespace addressbook_web_tests
             SelectGroup(p);
             RemoveGroup();
             ReturnToGroupsPage();
-            manager.LogoutHelper.Logout();
             return this;
         }
 

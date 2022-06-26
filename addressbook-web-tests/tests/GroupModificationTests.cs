@@ -18,7 +18,6 @@ namespace addressbook_web_tests.tests
             newData.Footer = null;
 
             app.GroupHelper.Modify(1, newData);
-            app.LogoutHelper.Logout();
         }
 
     }

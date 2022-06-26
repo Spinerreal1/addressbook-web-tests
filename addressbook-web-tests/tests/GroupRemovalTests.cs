@@ -15,7 +15,6 @@ namespace addressbook_web_tests
         public void GroupRemovalTest()
         {
             app.GroupHelper.Remove(1);
-            app.LogoutHelper.Logout();
         }
     }
 }

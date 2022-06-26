@@ -19,7 +19,6 @@ namespace addressbook_web_tests
         protected LoginHelper loginHelper;
         protected NavigationHelper navigator;
         protected GroupHelper groupHelper;
-        protected LogoutHelper logoutHelper;
         protected ContactHelper contactHelper;
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
@@ -30,7 +29,6 @@ namespace addressbook_web_tests
             baseURL = "http://localhost/addressbook";
 
             loginHelper = new LoginHelper(this);
-            logoutHelper = new LogoutHelper(this);
             navigator = new NavigationHelper(this, baseURL);
             groupHelper = new GroupHelper(this);
             contactHelper = new ContactHelper(this);
@@ -85,13 +83,6 @@ namespace addressbook_web_tests
             get 
             {
                 return groupHelper; 
-            }
-        }
-        public LogoutHelper LogoutHelper 
-        {
-            get 
-            {
-                return logoutHelper;
             }
         }
         public ContactHelper ContactHelper

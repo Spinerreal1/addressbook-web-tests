@@ -19,7 +19,6 @@ namespace addressbook_web_tests
             group.Nickname = "ccc";
 
             app.ContactHelper.Create(group);
-            app.LogoutHelper.Logout();
         }
         [Test]
         public void EmptyAccountCreationTest()
@@ -29,7 +28,6 @@ namespace addressbook_web_tests
             group.Nickname = "";
 
             app.ContactHelper.Create(group);
-            app.LogoutHelper.Logout();
         }
     }
 }
