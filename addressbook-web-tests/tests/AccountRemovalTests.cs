@@ -14,6 +14,7 @@ namespace addressbook_web_tests
         [Test]
         public void AccountRemovalTest()
         {
+            app.ContactHelper.CreateContactIfElementPresent();
             app.ContactHelper.Remove(1);
         }
     }

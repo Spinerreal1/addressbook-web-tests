@@ -16,6 +16,10 @@ namespace addressbook_web_tests
             this.name = name;
         }
 
+        public GroupData(string name, string v1, string v2) : this(name)
+        {
+        }
+
         public string Name
         {
             get

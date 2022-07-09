@@ -28,16 +28,20 @@ namespace addressbook_web_tests
         }
         public void GoToGroupsPage()
         {
-            if(driver.Url == baseURL + "/addressbook/group.php"
+            if (driver.Url == baseURL + "/addressbook/group.php"
                 && IsElementPresent(By.Name("new")))
             {
                 return;
             }
             driver.FindElement(By.LinkText("groups")).Click();
         }
-        public void GoToAccountsPage() 
+        public void GoToHomePage()
         {
-            driver.FindElement(By.LinkText("home")).Click();
+            if (driver.Url == baseURL + "/addressbook/")
+            {
+                return;
+            }
+            driver.Navigate().GoToUrl(baseURL + "/addressbook/");
         }
     }
 }

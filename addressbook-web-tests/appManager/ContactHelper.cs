@@ -11,9 +11,10 @@ namespace addressbook_web_tests
 {
     public class ContactHelper : HelperBase
     {
-        public ContactHelper(ApplicationManager manager)
-            : base(manager)
+        public string baseURL;
+        public ContactHelper(ApplicationManager manager, string baseURL) : base(manager)
         {
+            this.baseURL = baseURL;
         }
 
         public ContactHelper ReturnToHomePage()
@@ -24,7 +25,7 @@ namespace addressbook_web_tests
 
         public ContactHelper Create(AccountCreationData group)
         {
-            manager.Navigator.GoToGroupsPage();
+            manager.Navigator.GoToHomePage();
             GoToAccountCreationTests();
             FillAccountForm(group);
             SubmitAccountCreation();
@@ -33,16 +34,16 @@ namespace addressbook_web_tests
         }
         public ContactHelper Remove(int p)
         {
-            manager.Navigator.GoToGroupsPage();
-            OpenHomePage();
-            SelectContact(p);
-            DeleteContact();
-            CloseAllert();
-            return this;
+            {
+                OpenHomePage();
+                SelectContact(p);
+                DeleteContact();
+                return this;
+            }
         }
         public ContactHelper Modify(int p, AccountCreationData newData)
         {
-            manager.Navigator.GoToGroupsPage();
+            manager.Navigator.GoToHomePage();
             OpenHomePage();
             SelectContact(p);
             EditContact();
@@ -149,6 +150,20 @@ namespace addressbook_web_tests
         {
             driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
             return this;
+        }
+        public ContactHelper CreateContactIfElementPresent()
+        {
+            if (driver.Url == baseURL + "/addressbook/"
+               && !IsElementPresent(By.Name("selected[]")))
+            {
+                Create(new AccountData("firstname", "lastname"));
+            }
+            return this;
+        }
+
+        private void Create(AccountData accountData)
+        {
+            throw new NotImplementedException();
         }
     }
 }

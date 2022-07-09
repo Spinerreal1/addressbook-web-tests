@@ -27,11 +27,12 @@ namespace addressbook_web_tests
         {
             driver = new FirefoxDriver();
             baseURL = "http://localhost";
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
 
             loginHelper = new LoginHelper(this);
             navigator = new NavigationHelper(this, baseURL);
-            groupHelper = new GroupHelper(this);
-            contactHelper = new ContactHelper(this);
+            groupHelper = new GroupHelper(this, baseURL);
+            contactHelper = new ContactHelper(this, baseURL);
         }
 
         ~ApplicationManager()

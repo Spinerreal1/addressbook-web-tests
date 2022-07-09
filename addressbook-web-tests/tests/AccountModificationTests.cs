@@ -17,7 +17,7 @@ namespace addressbook_web_tests.Tests
             newData.Lastname = "3333";
             newData.Nickname = "4444";
 
-
+            app.ContactHelper.CreateContactIfElementPresent();
             app.ContactHelper.Modify(1, newData);
         }
 

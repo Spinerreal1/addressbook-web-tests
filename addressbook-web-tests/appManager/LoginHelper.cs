@@ -38,7 +38,7 @@ namespace addressbook_web_tests
         {
             if (IsLoggedIn())
             {
-                driver.FindElement(By.LinkText("Logout")).Click();
+                driver.FindElement(By.LinkText("logout")).Click();
             }
 
         }
@@ -47,6 +47,8 @@ namespace addressbook_web_tests
         {
             return IsElementPresent(By.Name("logout"));
         }
+
+
         public bool IsLoggedIn(AccountData account)
         {
             return IsLoggedIn()

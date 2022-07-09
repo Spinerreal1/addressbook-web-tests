@@ -11,14 +11,16 @@ namespace addressbook_web_tests
 {
     public class GroupHelper : HelperBase
     {
+        public string baseURL;
 
-        public GroupHelper(ApplicationManager manager)
-            : base(manager)
+        public GroupHelper(ApplicationManager manager, string baseURL) : base(manager)
         {
+            this.baseURL = baseURL;
         }
 
         public GroupHelper Remove(int p)
         {
+          
             manager.Navigator.GoToGroupsPage();
             SelectGroup(p);
             RemoveGroup();
@@ -90,6 +92,16 @@ namespace addressbook_web_tests
         public GroupHelper InitNewGroupModification()
         {
             driver.FindElement(By.Name("edit")).Click();
+            return this;
+        }
+
+        public GroupHelper CreateGroupIfElementPresent()
+        {
+            if (driver.Url == baseURL + "/addressbook/group.php"
+               && !IsElementPresent(By.Name("selected[]")))
+            {
+                Create(new GroupData("test name", "test header", "test footer"));
+            }
             return this;
         }
     }
