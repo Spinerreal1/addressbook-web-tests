@@ -23,6 +23,22 @@ namespace addressbook_web_tests
             return this;
         }
 
+        public List<AccountCreationData> GetContactsList()
+        {
+            List<AccountCreationData> contacts = new List<AccountCreationData>();
+
+            manager.Navigator.GoToHomePage();
+
+
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr[name=\"entry\"]"));
+            foreach (IWebElement element in elements)
+            {
+                contacts.Add(new AccountCreationData(element.Text));
+            }
+
+            return contacts;
+        }
+
         public ContactHelper Create(AccountCreationData group)
         {
             manager.Navigator.GoToHomePage();

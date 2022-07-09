@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Collections.Generic;
 using NUnit.Framework;
-
+using OpenQA.Selenium;
 
 namespace addressbook_web_tests
 {
@@ -50,23 +50,5 @@ namespace addressbook_web_tests
             Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
         }
 
-        [Test]
-        public void BadNameGroupCreationTest()
-        {
-
-            GroupData group = new GroupData("a'a");
-            group.Header = "";
-            group.Footer = "";
-
-            List<GroupData> oldGroups = app.GroupHelper.GetGroupList();
-
-            app.GroupHelper.Create(group);
-
-            List<GroupData> newGroups = app.GroupHelper.GetGroupList();
-            oldGroups.Add(group);
-            oldGroups.Sort();
-            newGroups.Sort();
-            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
-        }
     }
 }

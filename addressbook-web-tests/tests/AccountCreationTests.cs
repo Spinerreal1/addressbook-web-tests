@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 
 namespace addressbook_web_tests
@@ -18,7 +19,16 @@ namespace addressbook_web_tests
             group.Lastname = "bbb";
             group.Nickname = "ccc";
 
+            List<AccountCreationData> oldContacts = app.ContactHelper.GetContactsList();
+
             app.ContactHelper.Create(group);
+
+
+            List<AccountCreationData> newContacts = app.ContactHelper.GetContactsList();
+            oldContacts.Add(group);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts.Count + 1, newContacts.Count);
         }
         [Test]
         public void EmptyAccountCreationTest()
@@ -27,7 +37,15 @@ namespace addressbook_web_tests
             group.Lastname = "";
             group.Nickname = "";
 
+            List<AccountCreationData> oldContacts = app.ContactHelper.GetContactsList();
+
             app.ContactHelper.Create(group);
+
+            List<AccountCreationData> newContacts = app.ContactHelper.GetContactsList();
+            oldContacts.Add(group);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts.Count + 1, newContacts.Count);
         }
     }
 }

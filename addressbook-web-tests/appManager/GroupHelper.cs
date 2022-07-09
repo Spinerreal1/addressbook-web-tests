@@ -41,6 +41,11 @@ namespace addressbook_web_tests
             return groups;
         }
 
+        internal void Modify(int v, AccountCreationData newData)
+        {
+            throw new NotImplementedException();
+        }
+
         public GroupHelper Modify(int p, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
