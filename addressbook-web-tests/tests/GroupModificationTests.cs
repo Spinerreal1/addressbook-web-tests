@@ -18,10 +18,18 @@ namespace addressbook_web_tests.tests
             newData.Header = null;
             newData.Footer = null;
 
+            List<GroupData> oldGroups = app.GroupHelper.GetGroupList();
+
             app.Navigator.GoToGroupsPage();
             app.GroupHelper.CreateGroupIfElementPresent();
 
-            app.GroupHelper.Modify(1, newData);
+            app.GroupHelper.Modify(0, newData);
+
+            List<GroupData> newGroups = app.GroupHelper.GetGroupList();
+            oldGroups[0].Name = newData.Name;
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups.Count, newGroups.Count);
         }
 
     }
