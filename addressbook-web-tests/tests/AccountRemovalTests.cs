@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
 using System.Collections.Generic;
+using OpenQA.Selenium;
 
 
 namespace addressbook_web_tests
@@ -18,6 +19,7 @@ namespace addressbook_web_tests
 
             List<AccountCreationData> oldContacts = app.ContactHelper.GetContactsList();
 
+            AccountCreationData toBeRemoved = oldContacts[0];
 
             app.ContactHelper.CreateContactIfElementPresent();
             app.ContactHelper.Remove(0);
@@ -26,6 +28,11 @@ namespace addressbook_web_tests
 
             oldContacts.RemoveAt(0);
             Assert.AreEqual(oldContacts, newContacts);
+
+            foreach (AccountCreationData contact in newContacts)
+            {
+                Assert.AreNotEqual(contact.Id, toBeRemoved.Id);
+            }
         }
     }
 }

@@ -23,9 +23,11 @@ namespace addressbook_web_tests
             return this;
         }
 
+        private List<AccountCreationData> contactCache = null;
         public List<AccountCreationData> GetContactsList()
         {
-            List<AccountCreationData> contacts = new List<AccountCreationData>();
+
+            contactCache = new List<AccountCreationData>();
 
             manager.Navigator.GoToHomePage();
 
@@ -33,10 +35,14 @@ namespace addressbook_web_tests
             ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr[name=\"entry\"]"));
             foreach (IWebElement element in elements)
             {
-                contacts.Add(new AccountCreationData(element.Text));
+                var td = element.FindElements(By.CssSelector("td"));
+                contactCache.Add(new AccountCreationData(td[2].Text, td[1].Text)
+                {
+                    Id = element.FindElement(By.TagName("input")).GetAttribute("value")
+                });
             }
 
-            return contacts;
+            return new List<AccountCreationData>(contactCache);
         }
 
         public ContactHelper Create(AccountCreationData group)
@@ -62,7 +68,7 @@ namespace addressbook_web_tests
             manager.Navigator.GoToHomePage();
             OpenHomePage();
             SelectContact(p);
-            EditContact();
+            EditContact(1);
             ChangeAccountForm(newData);
             SubmitAccountModify();
             return this;
@@ -150,6 +156,7 @@ namespace addressbook_web_tests
         public ContactHelper DeleteContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            contactCache = null;
             return this;
         }
         public ContactHelper CloseAllert() 
@@ -162,9 +169,9 @@ namespace addressbook_web_tests
             driver.FindElement(By.Name("update")).Click();
             return this;
         }
-        public ContactHelper EditContact()
+        public ContactHelper EditContact(int index)
         {
-            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + (index + 2) + "]/td[8]/a/img")).Click();
             return this;
         }
         public ContactHelper CreateContactIfElementPresent()

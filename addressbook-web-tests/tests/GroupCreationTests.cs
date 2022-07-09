@@ -24,11 +24,13 @@ namespace addressbook_web_tests
 
             app.GroupHelper.Create(group);
 
+            Assert.AreEqual(oldGroups.Count + 1, app.GroupHelper.GetGroupCount());
+
             List<GroupData> newGroups = app.GroupHelper.GetGroupList();
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
-            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+            Assert.AreEqual(oldGroups.Count + 0, newGroups.Count);
 
         }
         [Test]
@@ -43,11 +45,13 @@ namespace addressbook_web_tests
 
             app.GroupHelper.Create(group);
 
+            Assert.AreEqual(oldGroups.Count + 1, app.GroupHelper.GetGroupCount());
+
             List<GroupData> newGroups = app.GroupHelper.GetGroupList();
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
-            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+            Assert.AreEqual(oldGroups.Count + 0, newGroups.Count);
         }
 
     }

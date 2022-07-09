@@ -11,9 +11,20 @@ namespace addressbook_web_tests
         private string name;
         private string header = "";
         private string footer = "";
-        public GroupData(string name)
+        private string v1;
+        private string v2;
+        private string text;
+
+        public GroupData(string name, string header, string footer)
         {
-            this.name = name;
+            Name = name;
+            Header = header;
+            Footer = footer;
+        }
+
+        public GroupData(string text)
+        {
+            this.text = text;
         }
 
         public bool Equals(GroupData other)
@@ -49,46 +60,14 @@ namespace addressbook_web_tests
 
         } 
 
-        public GroupData(string name, string v1, string v2) : this(name)
-        {
-        }
 
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-            }
-        }
+        public string Name { get; set; }
 
 
-        public string Header
-        {
-            get
-            {
-                return header;
-            }
-            set
-            {
-                header = value;
-            }
+        public string Header { get; set; }
 
-        }
-        public string Footer
-        {
-            get
-            {
-                return footer;
-            }
-            set
-            {
-                header = value;
-            }
+        public string Footer { get; set; }
 
-        }
+        public string Id { get; set; }
     }
 }

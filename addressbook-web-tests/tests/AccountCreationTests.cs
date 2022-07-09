@@ -28,7 +28,7 @@ namespace addressbook_web_tests
             oldContacts.Add(group);
             oldContacts.Sort();
             newContacts.Sort();
-            Assert.AreEqual(oldContacts.Count + 1, newContacts.Count);
+            Assert.AreEqual(oldContacts.Count + 0, newContacts.Count);
         }
         [Test]
         public void EmptyAccountCreationTest()
@@ -37,7 +37,7 @@ namespace addressbook_web_tests
             group.Lastname = "";
             group.Nickname = "";
 
-            List<AccountCreationData> oldContacts = app.ContactHelper.GetContactsList();
+                        List<AccountCreationData> oldContacts = app.ContactHelper.GetContactsList();
 
             app.ContactHelper.Create(group);
 
@@ -45,7 +45,7 @@ namespace addressbook_web_tests
             oldContacts.Add(group);
             oldContacts.Sort();
             newContacts.Sort();
-            Assert.AreEqual(oldContacts.Count + 1, newContacts.Count);
+            Assert.AreEqual(oldContacts.Count + 0, newContacts.Count);
         }
     }
 }
