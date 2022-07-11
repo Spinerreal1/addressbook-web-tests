@@ -17,8 +17,8 @@ namespace addressbook_web_tests
         {
 
             GroupData group = new GroupData("aaa");
-            group.Header = "bbb";
-            group.Footer = "ccc";
+            group.Header = "sss";
+            group.Footer = "ddd";
 
             List<GroupData> oldGroups = app.GroupHelper.GetGroupList();
 
@@ -30,7 +30,7 @@ namespace addressbook_web_tests
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
-            Assert.AreEqual(oldGroups.Count + 0, newGroups.Count);
+            Assert.AreEqual(oldGroups, newGroups);
 
         }
         [Test]
@@ -51,7 +51,7 @@ namespace addressbook_web_tests
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
-            Assert.AreEqual(oldGroups.Count + 0, newGroups.Count);
+            Assert.AreEqual(oldGroups, newGroups);
         }
 
     }

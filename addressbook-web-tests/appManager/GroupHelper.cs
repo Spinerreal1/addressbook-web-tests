@@ -13,9 +13,12 @@ namespace addressbook_web_tests
     {
         public string baseURL;
 
-        public GroupHelper(ApplicationManager manager, string baseURL) : base(manager)
+        public GroupHelper(ApplicationManager manager) : base(manager)
         {
-            this.baseURL = baseURL;
+        }
+
+        public GroupHelper(ApplicationManager manager, string baseURL) : this(manager)
+        {
         }
 
         public GroupHelper Remove(int p)
@@ -88,12 +91,12 @@ namespace addressbook_web_tests
         }
         public GroupHelper SelectGroup(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index+1) + "]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index + 1) + "]")).Click();
             return this;
         }
         public GroupHelper RemoveGroup()
         {
-            driver.FindElement(By.XPath("//input[5]")).Click();
+            driver.FindElement(By.Name("delete")).Click();
             groupCache = null;
             return this;
         }
