@@ -17,7 +17,7 @@ namespace addressbook_web_tests.Tests
         public void AccountModificationTest()
         {
             AccountCreationData newData = new AccountCreationData("zzz", "xxxx");
-            newData.Lastname = "3333";
+            newData.LastName = "3333";
             newData.Nickname = "4444";
 
             List<AccountCreationData> oldContacts = app.ContactHelper.GetContactsList();
@@ -31,8 +31,8 @@ namespace addressbook_web_tests.Tests
             List<AccountCreationData> newContacts = app.ContactHelper.GetContactsList();
 
 
-            oldContacts[0].Firstname = newData.Firstname;
-            oldContacts[0].Lastname = newData.Lastname;
+            oldContacts[0].FirstName = newData.FirstName;
+            oldContacts[0].LastName = newData.LastName;
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
@@ -41,8 +41,8 @@ namespace addressbook_web_tests.Tests
             {
                 if (contact.Id == oldContactData.Id)
                 {
-                    Assert.AreEqual(newData.Firstname, contact.Firstname);
-                    Assert.AreEqual(newData.Lastname, contact.Lastname);
+                    Assert.AreEqual(newData.FirstName, contact.FirstName);
+                    Assert.AreEqual(newData.LastName, contact.LastName);
                 }
             }
         }

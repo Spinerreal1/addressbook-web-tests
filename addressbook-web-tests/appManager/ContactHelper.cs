@@ -83,9 +83,9 @@ namespace addressbook_web_tests
 
         public ContactHelper FillAccountForm(AccountCreationData group)
         {
-            Type(By.Name("firstname"), group.Firstname);
-            Type(By.Name("middlename"), group.MIddlename);
-            Type(By.Name("lastname"), group.Lastname);
+            Type(By.Name("firstname"), group.FirstName);
+            Type(By.Name("middlename"), group.MIddleName);
+            Type(By.Name("lastname"), group.LastName);
             Type(By.Name("nickname"), group.Nickname);
             driver.FindElement(By.Name("title")).Click();
             driver.FindElement(By.Name("company")).Click();
@@ -112,9 +112,9 @@ namespace addressbook_web_tests
         }
         public ContactHelper ChangeAccountForm(AccountCreationData newData)
         {
-            Type(By.Name("firstname"), newData.Firstname);
-            Type(By.Name("middlename"), newData.MIddlename);
-            Type(By.Name("lastname"), newData.Lastname);
+            Type(By.Name("firstname"), newData.FirstName);
+            Type(By.Name("middlename"), newData.MIddleName);
+            Type(By.Name("lastname"), newData.LastName);
             Type(By.Name("nickname"), newData.Nickname);
             driver.FindElement(By.Name("company")).Click();
             driver.FindElement(By.Name("title")).Click();

@@ -16,7 +16,7 @@ namespace addressbook_web_tests
         public void AccountCreationTest()
         {
             AccountCreationData group = new AccountCreationData("aaa", "bbb");
-            group.Lastname = "bbb";
+            group.LastName = "bbb";
             group.Nickname = "ccc";
 
             List<AccountCreationData> oldContacts = app.ContactHelper.GetContactsList();
@@ -34,7 +34,7 @@ namespace addressbook_web_tests
         public void EmptyAccountCreationTest()
         {
             AccountCreationData group = new AccountCreationData("", "");
-            group.Lastname = "";
+            group.LastName = "";
             group.Nickname = "";
 
                         List<AccountCreationData> oldContacts = app.ContactHelper.GetContactsList();

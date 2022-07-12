@@ -38,7 +38,7 @@ namespace addressbook_web_tests
         {
             if (IsLoggedIn())
             {
-                driver.FindElement(By.LinkText("logout")).Click();
+                driver.FindElement(By.XPath("/html/body/div/div[1]/form/a")).Click();
             }
 
         }
