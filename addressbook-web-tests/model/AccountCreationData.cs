@@ -11,8 +11,8 @@ namespace addressbook_web_tests
 
         public AccountCreationData(string firstname, string lastname)
         {
-            FirstName = firstname;
-            LastName = lastname;
+            this.FirstName = firstname;
+            this.LastName = lastname;
         }
 
 
@@ -22,7 +22,9 @@ namespace addressbook_web_tests
             {
                 return false;
             }
+
             if (Object.ReferenceEquals(this, other))
+
             {
                 return true;
             }
@@ -38,11 +40,11 @@ namespace addressbook_web_tests
         }
         public int CompareTo(AccountCreationData other)
         {
-            if (object.ReferenceEquals(other, null))
+            if (object.ReferenceEquals(other.FirstName, null) && object.ReferenceEquals(other.LastName, null))
             {
                 return 1;   
             }
-            return this.ToString().CompareTo(other.ToString());
+            return LastName.CompareTo(other.LastName) + FirstName.CompareTo(other.FirstName);
         }
 
         public string FirstName { get; set; }

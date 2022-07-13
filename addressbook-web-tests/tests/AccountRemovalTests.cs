@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
 using System.Collections.Generic;
-using OpenQA.Selenium;
+
 
 
 namespace addressbook_web_tests
@@ -16,12 +16,13 @@ namespace addressbook_web_tests
         [Test]
         public void AccountRemovalTest()
         {
+            app.ContactHelper.CreateContactIfElementPresent();
 
             List<AccountCreationData> oldContacts = app.ContactHelper.GetContactsList();
 
             AccountCreationData toBeRemoved = oldContacts[0];
 
-            app.ContactHelper.CreateContactIfElementPresent();
+
             app.ContactHelper.Remove(0);
 
             List<AccountCreationData> newContacts = app.ContactHelper.GetContactsList();

@@ -27,11 +27,12 @@ namespace addressbook_web_tests
         private List<AccountCreationData> contactCache = null;
         public List<AccountCreationData> GetContactsList()
         {
-
+            if (contactCache == null)
+            { 
             contactCache = new List<AccountCreationData>();
 
             manager.Navigator.GoToHomePage();
-
+            Thread.Sleep(200);
 
             ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr[name=\"entry\"]"));
             foreach (IWebElement element in elements)
@@ -42,7 +43,7 @@ namespace addressbook_web_tests
                     Id = element.FindElement(By.TagName("input")).GetAttribute("value")
                 });
             }
-
+           }
             return new List<AccountCreationData>(contactCache);
         }
 

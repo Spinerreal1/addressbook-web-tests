@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using OpenQA.Selenium;
 
 
-namespace addressbook_web_tests.Tests
+
+namespace addressbook_web_tests
 {
     [TestFixture]
     public class AccountModificationTests : AuthTestBase
