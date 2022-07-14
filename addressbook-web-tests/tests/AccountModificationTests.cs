@@ -25,7 +25,6 @@ namespace addressbook_web_tests
             app.ContactHelper.CreateContactIfElementPresent();
             app.ContactHelper.Modify(0, newData);
 
-            app.GroupHelper.Modify(0, newData);
 
             List<AccountCreationData> newContacts = app.ContactHelper.GetContactsList();
 

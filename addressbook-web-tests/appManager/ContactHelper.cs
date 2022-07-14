@@ -70,7 +70,7 @@ namespace addressbook_web_tests
             manager.Navigator.GoToHomePage();
             OpenHomePage();
             SelectContact(p);
-            EditContact(1);
+            EditContact(p);
             ChangeAccountForm(newData);
             SubmitAccountModify();
             return this;
@@ -159,6 +159,7 @@ namespace addressbook_web_tests
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             driver.SwitchTo().Alert().Accept();
+            driver.FindElement(By.CssSelector("div.msgbox"));
             contactCache = null;
             return this;
         }
