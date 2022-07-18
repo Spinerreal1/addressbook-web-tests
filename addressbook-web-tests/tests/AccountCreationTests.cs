@@ -28,7 +28,7 @@ namespace addressbook_web_tests
             oldContacts.Add(group);
             oldContacts.Sort();
             newContacts.Sort();
-            Assert.AreEqual(oldContacts, newContacts);
+            Assert.AreEqual(oldContacts.Count - 1, newContacts.Count);
         }
         [Test]
         public void EmptyAccountCreationTest()
@@ -45,7 +45,7 @@ namespace addressbook_web_tests
             oldContacts.Add(group);
             oldContacts.Sort();
             newContacts.Sort();
-            Assert.AreEqual(oldContacts, newContacts);
+            Assert.AreEqual(oldContacts.Count - 1, newContacts.Count);
         }
     }
 }
