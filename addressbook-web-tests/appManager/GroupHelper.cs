@@ -57,7 +57,7 @@ namespace addressbook_web_tests
             return driver.FindElements(By.CssSelector("span.group")).Count;
         }
 
-        internal void Modify(int v, AccountCreationData newData)
+        internal void Modify(int v, ContactData newData)
         {
             throw new NotImplementedException();
         }

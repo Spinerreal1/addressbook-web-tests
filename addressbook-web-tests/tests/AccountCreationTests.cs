@@ -15,37 +15,43 @@ namespace addressbook_web_tests
         [Test]
         public void AccountCreationTest()
         {
-            AccountCreationData group = new AccountCreationData("aaa", "bbb");
-            group.LastName = "bbb";
-            group.Nickname = "ccc";
+            ContactData group = new ContactData("aaa", "bbb")
+            {
+                LastName = "abzr",
+                Nickname = "abzrq"
+            };
 
-            List<AccountCreationData> oldContacts = app.ContactHelper.GetContactsList();
+            List<ContactData> oldContacts = app.Contacts.GetContactsList();
 
-            app.ContactHelper.Create(group);
+            app.Contacts.Create(group);
 
 
-            List<AccountCreationData> newContacts = app.ContactHelper.GetContactsList();
+            List<ContactData> newContacts = app.Contacts.GetContactsList();
             oldContacts.Add(group);
             oldContacts.Sort();
             newContacts.Sort();
-            Assert.AreEqual(oldContacts.Count - 1, newContacts.Count);
+            Assert.AreEqual(oldContacts.Count, newContacts.Count);
+            Assert.AreEqual(oldContacts, newContacts);
         }
         [Test]
         public void EmptyAccountCreationTest()
         {
-            AccountCreationData group = new AccountCreationData("", "");
-            group.LastName = "";
-            group.Nickname = "";
+            ContactData group = new ContactData("", "")
+            {
+                LastName = "",
+                Nickname = ""
+            };
 
-                        List<AccountCreationData> oldContacts = app.ContactHelper.GetContactsList();
+            List<ContactData> oldContacts = app.Contacts.GetContactsList();
 
-            app.ContactHelper.Create(group);
+            app.Contacts.Create(group);
 
-            List<AccountCreationData> newContacts = app.ContactHelper.GetContactsList();
+            List<ContactData> newContacts = app.Contacts.GetContactsList();
             oldContacts.Add(group);
             oldContacts.Sort();
             newContacts.Sort();
-            Assert.AreEqual(oldContacts.Count - 1, newContacts.Count);
+            Assert.AreEqual(oldContacts.Count, newContacts.Count);
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }

@@ -86,7 +86,7 @@ namespace addressbook_web_tests
                 return groupHelper; 
             }
         }
-        public ContactHelper ContactHelper
+        public ContactHelper Contacts
         {
             get 
             {

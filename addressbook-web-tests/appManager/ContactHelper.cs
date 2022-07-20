@@ -18,18 +18,28 @@ namespace addressbook_web_tests
             this.baseURL = baseURL;
         }
 
+        internal ContactData GetContactInformationFromTable(int v)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal ContactData GetContactInformationFromEditForm(int v)
+        {
+            throw new NotImplementedException();
+        }
+
         public ContactHelper ReturnToHomePage()
         {
             driver.FindElement(By.LinkText("home page")).Click();
             return this;
         }
 
-        private List<AccountCreationData> contactCache = null;
-        public List<AccountCreationData> GetContactsList()
+        private List<ContactData> contactCache = null;
+        public List<ContactData> GetContactsList()
         {
             if (contactCache == null)
             { 
-            contactCache = new List<AccountCreationData>();
+            contactCache = new List<ContactData>();
 
             manager.Navigator.GoToHomePage();
             Thread.Sleep(200);
@@ -38,16 +48,16 @@ namespace addressbook_web_tests
             foreach (IWebElement element in elements)
             {
                 var td = element.FindElements(By.CssSelector("td"));
-                contactCache.Add(new AccountCreationData(td[2].Text, td[1].Text)
+                contactCache.Add(new ContactData(td[2].Text, td[1].Text)
                 {
                     Id = element.FindElement(By.TagName("input")).GetAttribute("value")
                 });
             }
            }
-            return new List<AccountCreationData>(contactCache);
+            return new List<ContactData>(contactCache);
         }
 
-        public ContactHelper Create(AccountCreationData group)
+        public ContactHelper Create(ContactData group)
         {
             manager.Navigator.GoToHomePage();
             GoToAccountCreationTests();
@@ -65,7 +75,7 @@ namespace addressbook_web_tests
                 return this;
             }
         }
-        public ContactHelper Modify(int p, AccountCreationData newData)
+        public ContactHelper Modify(int p, ContactData newData)
         {
             manager.Navigator.GoToHomePage();
             OpenHomePage();
@@ -82,7 +92,7 @@ namespace addressbook_web_tests
             return this;
         }
 
-        public ContactHelper FillAccountForm(AccountCreationData group)
+        public ContactHelper FillAccountForm(ContactData group)
         {
             Type(By.Name("firstname"), group.FirstName);
             Type(By.Name("middlename"), group.MIddleName);
@@ -111,7 +121,7 @@ namespace addressbook_web_tests
             driver.FindElement(By.Name("notes")).Click();
             return this;
         }
-        public ContactHelper ChangeAccountForm(AccountCreationData newData)
+        public ContactHelper ChangeAccountForm(ContactData newData)
         {
             Type(By.Name("firstname"), newData.FirstName);
             Type(By.Name("middlename"), newData.MIddleName);

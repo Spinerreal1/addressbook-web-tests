@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace addressbook_web_tests
 {
-    public class AccountCreationData : IEquatable<AccountCreationData>, IComparable<AccountCreationData>
+    public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
 
-        public AccountCreationData(string firstname, string lastname)
+        public ContactData(string firstname, string lastname)
         {
-            this.FirstName = firstname;
-            this.LastName = lastname;
+            FirstName = firstname;
+            LastName = lastname;
         }
 
 
-        public bool Equals(AccountCreationData other)
+        public bool Equals(ContactData other)
         {
-            if (Object.ReferenceEquals(other, null))
+            if (other is null)
             {
                 return false;
             }
@@ -38,9 +38,9 @@ namespace addressbook_web_tests
         {
             return $"firstname = {FirstName} and LastName = {LastName}";
         }
-        public int CompareTo(AccountCreationData other)
+        public int CompareTo(ContactData other)
         {
-            if (object.ReferenceEquals(other.FirstName, null) && object.ReferenceEquals(other.LastName, null))
+            if (other.FirstName is null && other.LastName is null)
             {
                 return 1;   
             }
@@ -52,7 +52,7 @@ namespace addressbook_web_tests
             {
                 return LastName.CompareTo(other.LastName);
             }
-            return LastName.CompareTo(other.LastName) + FirstName.CompareTo(other.FirstName);
+            return 0;
         }
 
         public string FirstName { get; set; }

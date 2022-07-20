@@ -16,21 +16,21 @@ namespace addressbook_web_tests
         [Test]
         public void AccountRemovalTest()
         {
-            app.ContactHelper.CreateContactIfElementPresent();
+            app.Contacts.CreateContactIfElementPresent();
 
-            List<AccountCreationData> oldContacts = app.ContactHelper.GetContactsList();
+            List<ContactData> oldContacts = app.Contacts.GetContactsList();
 
-            AccountCreationData toBeRemoved = oldContacts[0];
+            ContactData toBeRemoved = oldContacts[0];
 
 
-            app.ContactHelper.Remove(0);
+            app.Contacts.Remove(0);
 
-            List<AccountCreationData> newContacts = app.ContactHelper.GetContactsList();
+            List<ContactData> newContacts = app.Contacts.GetContactsList();
 
             oldContacts.RemoveAt(0);
             Assert.AreEqual(oldContacts, newContacts);
 
-            foreach (AccountCreationData contact in newContacts)
+            foreach (ContactData contact in newContacts)
             {
                 Assert.AreNotEqual(contact.Id, toBeRemoved.Id);
             }
