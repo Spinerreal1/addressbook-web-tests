@@ -89,6 +89,7 @@ namespace addressbook_web_tests
         public ContactHelper SubmitAccountCreation()
         {
             driver.FindElement(By.XPath("//input[21]")).Click();
+            contactCache = null;
             return this;
         }
 
@@ -181,6 +182,7 @@ namespace addressbook_web_tests
         public ContactHelper SubmitAccountModify() 
         {
             driver.FindElement(By.Name("update")).Click();
+            contactCache = null;
             return this;
         }
         public ContactHelper EditContact(int index)
