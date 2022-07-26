@@ -90,6 +90,7 @@
     <Compile Include="Tests\GroupCreationTests.cs" />
     <Compile Include="Tests\AccountCreationTests.cs" />
     <Compile Include="Tests\ContactInformationTest.cs" />
+    <Compile Include="Tests\Search Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
