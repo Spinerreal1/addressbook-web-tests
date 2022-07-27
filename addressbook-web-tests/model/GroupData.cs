@@ -15,7 +15,9 @@ namespace addressbook_web_tests
             Header = header;
             Footer = footer;
         }
-
+        public GroupData()
+        {
+        }
         public GroupData(string name)
         {
             Name = name;
