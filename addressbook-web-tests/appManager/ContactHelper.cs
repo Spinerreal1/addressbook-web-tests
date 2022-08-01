@@ -249,5 +249,32 @@ namespace addressbook_web_tests
             Match m = new Regex(@"\d+").Match(text);
             return Int32.Parse(m.Value);
         }
+        public ContactData GetContactInformationFromCard(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            OpenContactCard(index);
+            string allData = driver.FindElement(By.Id("content")).Text;
+            return new ContactData(allData);
+        }
+
+        public ContactHelper OpenContactCard(int i)
+        {
+            driver.FindElements(By.Name("entry"))[i]
+                .FindElements(By.TagName("td"))[6]
+                .FindElement(By.TagName("a")).Click();
+            return this;
+        }
+
+
+        public bool IsContactsExist()
+        {
+            return IsElementPresent(By.XPath("//img[@alt='Edit']"));
+
+        }
+
+        public int GetContactCount()
+        {
+            return driver.FindElements(By.CssSelector("td")).Count;
+        }
     }
 }

@@ -11,12 +11,17 @@ namespace addressbook_web_tests
     {
         public string allPhones;
         public string allEmails;
+        public String allData;
         public ContactData(string firstname, string lastname)
         {
             FirstName = firstname;
             LastName = lastname;
         }
 
+        public ContactData(string allData)
+        {
+            this.allData = allData;
+        }
 
         public bool Equals(ContactData other)
         {
@@ -126,6 +131,76 @@ namespace addressbook_web_tests
                 return "";
             }
             return Regex.Replace(phone, "[ \\-()]", "") + "\r\n";
+        }
+        public string AllData
+        {
+            get
+            {
+                if (allData != null)
+                {
+                    return allData;
+                }
+                else
+                {
+                    string s = "";
+                    string s1 = "";
+                    string s2 = "";
+                    string s3 = "";
+                    string s4 = "";
+                    string p1 = "";
+                    string p2 = "";
+                    string p3 = "";
+
+                    if (FirstName != "")
+                    {
+                        s = FirstName;
+                    }
+                    if (LastName != "")
+                    {
+                        s1 = " " + LastName + "\r\n";
+                    }
+                    if (Address != "")
+                    {
+                        s2 = Address + "\r\n";
+                    }
+                    if (Home != "")
+                    {
+                        p1 = "H: " + Home + "\r\n";
+                    }
+                    if (Mobile != "")
+                    {
+                        p2 = "M: " + Mobile + "\r\n";
+                    }
+                    if (Work != "")
+                    {
+                        p3 = "W: " + Work;
+                    }
+                    if (AllPhones != "")
+                    {
+                        s3 = "\r\n" + p1 + p2 + p3 + "\r\n";
+                    }
+                    if (AllEmails != "")
+                    {
+                        s4 = AllEmails + " \r\n\r\n";
+                    }
+                    if (s + s1 + s2 + s3 + s4 == "")
+                    {
+                        return " \r\n\r\n";
+                    }
+                    else
+                    {
+                        if (AllEmails != "" && AllPhones != "")
+                        {
+                            return s + s1 + s2 + s3 + "\r\n" + s4;
+                        }
+                    }
+                    return s + s1 + s2 + s3 + s4;
+                }
+            }
+            set
+            {
+                allData = value;
+            }
         }
     }
     }
