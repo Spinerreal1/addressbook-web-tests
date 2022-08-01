@@ -10,7 +10,7 @@ namespace addressbook_web_tests
     public class ContactInformationTest : AuthTestBase
     {
         [Test]
-        public void TestContactInformation()
+        public void TestContactInformationFromTable()
         {
             ContactData fromTable = app.Contacts.GetContactInformationFromTable(0);
             ContactData fromForm = app.Contacts.GetContactInformationFromEditForm(0);
