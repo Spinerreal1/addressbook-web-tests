@@ -157,7 +157,7 @@ namespace addressbook_web_tests
                     }
                     if (LastName != "")
                     {
-                        s1 = " " + LastName + "\r\n";
+                        s1 = "" + LastName + "\r\n";
                     }
                     if (Address != "")
                     {
@@ -165,15 +165,15 @@ namespace addressbook_web_tests
                     }
                     if (Home != "")
                     {
-                        p1 = "H: " + Home + "\r\n";
+                        p1 = "H:" + Home + "\r\n";
                     }
                     if (Mobile != "")
                     {
-                        p2 = "M: " + Mobile + "\r\n";
+                        p2 = "M:" + Mobile + "\r\n";
                     }
                     if (Work != "")
                     {
-                        p3 = "W: " + Work;
+                        p3 = "W:" + Work;
                     }
                     if (AllPhones != "")
                     {
@@ -181,11 +181,11 @@ namespace addressbook_web_tests
                     }
                     if (AllEmails != "")
                     {
-                        s4 = AllEmails + " \r\n\r\n";
+                        s4 = AllEmails + "\r\n\r\n";
                     }
                     if (s + s1 + s2 + s3 + s4 == "")
                     {
-                        return " \r\n\r\n";
+                        return "\r\n\r\n".Trim();
                     }
                     else
                     {
@@ -194,7 +194,7 @@ namespace addressbook_web_tests
                             return s + s1 + s2 + s3 + "\r\n" + s4;
                         }
                     }
-                    return s + s1 + s2 + s3 + s4;
+                    return (s + s1 + s2 + s3 + s4).Trim();
                 }
             }
             set

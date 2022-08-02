@@ -38,7 +38,7 @@ namespace addressbook_web_tests
                 AllEmails = allEmails
             };
         }
-        public ContactData GetContactInformationFromEditForm(int p)
+        public ContactData GetContactInformationFromEditForm(int index)
         {
             manager.Navigator.GoToHomePage();
             EditContact(0);
@@ -257,9 +257,9 @@ namespace addressbook_web_tests
             return new ContactData(allData);
         }
 
-        public ContactHelper OpenContactCard(int i)
+        public ContactHelper OpenContactCard(int p)
         {
-            driver.FindElements(By.Name("entry"))[i]
+            driver.FindElements(By.Name("entry"))[p]
                 .FindElements(By.TagName("td"))[6]
                 .FindElement(By.TagName("a")).Click();
             return this;
