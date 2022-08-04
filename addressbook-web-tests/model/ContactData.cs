@@ -157,7 +157,7 @@ namespace addressbook_web_tests
                     }
                     if (LastName != "")
                     {
-                        s1 = "" + LastName + "\r\n";
+                        s1 = " " + LastName + "\r\n";
                     }
                     if (Address != "")
                     {
@@ -165,15 +165,15 @@ namespace addressbook_web_tests
                     }
                     if (Home != "")
                     {
-                        p1 = "H:" + Home + "\r\n";
+                        p1 = "H: " + Home + "\r\n";
                     }
                     if (Mobile != "")
                     {
-                        p2 = "M:" + Mobile + "\r\n";
+                        p2 = "M: " + Mobile + "\r\n";
                     }
                     if (Work != "")
                     {
-                        p3 = "W:" + Work;
+                        p3 = "W: " + Work;
                     }
                     if (AllPhones != "")
                     {
@@ -185,7 +185,7 @@ namespace addressbook_web_tests
                     }
                     if (s + s1 + s2 + s3 + s4 == "")
                     {
-                        return "\r\n\r\n".Trim();
+                        return "".Trim();
                     }
                     else
                     {
