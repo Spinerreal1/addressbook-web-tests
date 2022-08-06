@@ -1,9 +1,17 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using NUnit.Framework;
 using System.Collections.Generic;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using System.Xml;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
+using Excel = Microsoft.Office.Interop.Excel;
+
+
 
 
 namespace addressbook_web_tests
@@ -18,12 +26,30 @@ namespace addressbook_web_tests
             {
                 contacts.Add(new ContactData(GenerateRandomString(30), GenerateRandomString(30))
                 {
+                    MIddleName = (GenerateRandomString(10)),
+                    Address = (GenerateRandomString(50)),
+                    Mobile = (GenerateRandomString(11)),
+                    Home = (GenerateRandomString(11)),
+                    Email = (GenerateRandomString(20)),
+                    Title = (GenerateRandomString(10)),
                 });
             }
             return contacts;
         }
 
-        [Test, TestCaseSource("RandomContactDataProvider")]
+        public static IEnumerable<ContactData> ContactDataFromJsonFile()
+        {
+            return JsonConvert.DeserializeObject<List<ContactData>>(
+            File.ReadAllText(@"contacts.json"));
+        }
+        public static IEnumerable<ContactData> ContactDataFromXmlFile()
+        {
+            return (List<ContactData>)
+                new XmlSerializer(typeof(List<ContactData>))
+                    .Deserialize(new StreamReader(@"contacts.xml"));
+        }
+
+        [Test, TestCaseSource("ContactDataFromXmlFile")]
         public void AccountCreationTest(ContactData group)
         {
             List<ContactData> oldContacts = app.Contacts.GetContactsList();
