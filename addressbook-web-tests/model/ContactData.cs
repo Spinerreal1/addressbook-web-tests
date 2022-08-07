@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using LinqToDB.Mapping;
 
 namespace addressbook_web_tests
 {
+    [Table(Name = "addressbook")]
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
         public string allPhones;
@@ -16,6 +18,9 @@ namespace addressbook_web_tests
         {
             FirstName = firstname;
             LastName = lastname;
+        }
+        public ContactData()
+        {
         }
 
         public ContactData(string allData)
@@ -61,23 +66,41 @@ namespace addressbook_web_tests
             }
             return 0;
         }
-
+        [Column(Name = "firstname")]
         public string FirstName { get; set; }
+        [Column(Name = "lastname")]
         public string LastName { get; set; }
+        [Column(Name = "middlename")]
         public string MIddleName { get; set; }
+        [Column(Name = "nickname")]
         public string Nickname { get; set; }
+        [Column(Name = "title")]
         public string Title { get; set; }
+        [Column(Name = "company")]
         public string Company { get; set; }
+        [Column(Name = "address")]
         public string Address { get; set; }
+        [Column(Name = "home")]
         public string Home { get; set; }
-        public string Mobile { get; set; } 
+        [Column(Name = "mobile")]
+        public string Mobile { get; set; }
+        [Column(Name = "work")]
         public string Work { get; set; }
+        [Column(Name = "fax")]
         public string Fax { get; set; }
+        [Column(Name = "email")]
         public string Email { get; set; }
+        [Column(Name = "email2")]
         public string Email2 { get; set; }
+        [Column(Name = "email3")]
         public string Email3 { get; set; }
+        [Column(Name = "homepage")]
         public string Homepage { get; set; }
+        [Column(Name = "id"), PrimaryKey]
         public string Id { get; set; }
+
+        [Column(Name = "deprecated")]
+        public string Deprecated { get; set; }
         public string AllPhones
         {
             get
@@ -200,6 +223,13 @@ namespace addressbook_web_tests
             set
             {
                 allData = value;
+            }
+        }
+        public static List<ContactData> GetAll()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from c in db.Contacts.Where(x => x.Deprecated == "0000-00-00 00:00:00") select c).ToList();
             }
         }
     }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace addressbook_web_tests.tests
+namespace addressbook_web_tests
 {
     [TestFixture]
-    public class GroupModificationTests : AuthTestBase
+    public class GroupModificationTests : GroupTestBase
     {
         [Test]
         public void GroupModificationTest() 
@@ -18,7 +18,7 @@ namespace addressbook_web_tests.tests
             newData.Header = "abc";
             newData.Footer = "aaa";
 
-            List<GroupData> oldGroups = app.GroupHelper.GetGroupList();
+            List<GroupData> oldGroups = GroupData.GetAll();
             GroupData oldData = oldGroups[0];
 
             app.Navigator.GoToGroupsPage();
@@ -28,7 +28,7 @@ namespace addressbook_web_tests.tests
 
             Assert.AreEqual(oldGroups.Count, app.GroupHelper.GetGroupCount());
 
-            List<GroupData> newGroups = app.GroupHelper.GetGroupList();
+            List<GroupData> newGroups = GroupData.GetAll();
             oldGroups[0].Name = newData.Name;
             oldGroups.Sort();
             newGroups.Sort();

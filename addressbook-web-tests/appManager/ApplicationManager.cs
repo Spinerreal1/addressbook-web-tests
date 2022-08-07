@@ -93,5 +93,7 @@ namespace addressbook_web_tests
                 return contactHelper;
             }
         }
+
+        public object Groups { get; internal set; }
     }
 }

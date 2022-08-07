@@ -9,12 +9,13 @@ using OpenQA.Selenium;
 using System.Xml;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
+using System.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace addressbook_web_tests
 {
     [TestFixture]
-    public class GroupCreationTests : AuthTestBase
+    public class GroupCreationTests : GroupTestBase
     {
         public static IEnumerable<GroupData> RandomGroupDataProvider()
         {
@@ -83,18 +84,32 @@ namespace addressbook_web_tests
         public void GroupCreationTest(GroupData group)
         {
 
-            List<GroupData> oldGroups = app.GroupHelper.GetGroupList();
+            List<GroupData> oldGroups = GroupData.GetAll();
 
             app.GroupHelper.Create(group);
 
             Assert.AreEqual(oldGroups.Count + 1, app.GroupHelper.GetGroupCount());
 
-            List<GroupData> newGroups = app.GroupHelper.GetGroupList();
+            List<GroupData> newGroups = GroupData.GetAll();
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
          
         }
+        [Test]
+        public void TestDBConnectivity()
+        {
+            DateTime start = DateTime.Now;
+            List<GroupData> fromUi = app.GroupHelper.GetGroupList();
+            DateTime end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+
+            start = DateTime.Now;
+            List<GroupData> fromDb = GroupData.GetAll();
+            end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+        }
+
     }
 }

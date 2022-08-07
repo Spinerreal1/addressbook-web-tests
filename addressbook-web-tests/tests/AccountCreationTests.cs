@@ -17,7 +17,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 namespace addressbook_web_tests
 {
     [TestFixture]
-    public class AccountCreationTests : AuthTestBase
+    public class AccountCreationTests : ContactTestBase
     {
         public static IEnumerable<ContactData> RandomContactDataProvider()
         {
@@ -50,19 +50,32 @@ namespace addressbook_web_tests
         }
 
         [Test, TestCaseSource("ContactDataFromXmlFile")]
-        public void AccountCreationTest(ContactData group)
+        public void AccountCreationTest(ContactData contact)
         {
-            List<ContactData> oldContacts = app.Contacts.GetContactsList();
+            List<ContactData> oldContacts = ContactData.GetAll();
 
-            app.Contacts.Create(group);
+            app.Contacts.Create(contact);
 
 
-            List<ContactData> newContacts = app.Contacts.GetContactsList();
-            oldContacts.Add(group);
+            List<ContactData> newContacts = ContactData.GetAll();
+            oldContacts.Add(contact);
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts.Count, newContacts.Count);
             Assert.AreEqual(oldContacts, newContacts);
+        }
+        [Test]
+        public void TestDBConnectivity()
+        {
+            DateTime start = DateTime.Now;
+            List<ContactData> fromUi = app.Contacts.GetContactsList();
+            DateTime end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+
+            start = DateTime.Now;
+            List<ContactData> fromDb = ContactData.GetAll();
+            end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
         }
     }
 }

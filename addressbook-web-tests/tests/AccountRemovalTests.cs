@@ -23,7 +23,7 @@ namespace addressbook_web_tests
             ContactData toBeRemoved = oldContacts[0];
 
 
-            app.Contacts.Remove(0);
+            app.Contacts.Remove(toBeRemoved);
 
             List<ContactData> newContacts = app.Contacts.GetContactsList();
 

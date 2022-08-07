@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace addressbook_web_tests
 {
     [TestFixture]
-    public class AccountModificationTests : AuthTestBase
+    public class AccountModificationTests : ContactTestBase
     {
         [Test]
         public void AccountModificationTest()
@@ -19,14 +19,14 @@ namespace addressbook_web_tests
             newData.LastName = "3333";
             newData.Nickname = "4444";
 
-            List<ContactData> oldContacts = app.Contacts.GetContactsList();
+            List<ContactData> oldContacts = ContactData.GetAll();
             ContactData oldContactData = oldContacts[0];
 
             app.Contacts.CreateContactIfElementPresent();
             app.Contacts.Modify(0, newData);
 
 
-            List<ContactData> newContacts = app.Contacts.GetContactsList();
+            List<ContactData> newContacts = ContactData.GetAll();
 
 
             oldContacts[0].FirstName = newData.FirstName;
