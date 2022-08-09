@@ -16,10 +16,12 @@ namespace addressbook_test_data_generators
     {
         static void Main(string[] args)
         {
-            int count = Convert.ToInt32(args[0]);
-            string filename = args[1];
-            string format  = args[2];
+
             string type = args[0];
+            int count = Convert.ToInt32(args[1]);
+            string filename = args[2];
+            string format = args[3];
+
 
             List <GroupData> groups = new List<GroupData>();
             for (int i = 0; i < count; i++)
