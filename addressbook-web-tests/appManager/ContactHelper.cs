@@ -20,6 +20,11 @@ namespace addressbook_web_tests
             this.baseURL = baseURL;
         }
 
+        public void CreateContactIfElementNotPresent()
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddContactToGroup(ContactData contact, GroupData group)
         {
             manager.Navigator.GoToHomePage();
@@ -29,6 +34,11 @@ namespace addressbook_web_tests
             CommitAddingContactToGroup();
             new WebDriverWait(driver, TimeSpan.FromSeconds(10))
                 .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+        }
+
+        internal void RemoveContactFromGroup(ContactData contact, GroupData group)
+        {
+            throw new NotImplementedException();
         }
 
         public void SelectContact(string contactId)
