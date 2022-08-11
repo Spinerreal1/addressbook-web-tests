@@ -15,22 +15,22 @@ namespace addressbook_web_tests
         [Test]
         public void AccountModificationTest()
         {
-            ContactData newData = new ContactData("zzz", "xxxx");
-            newData.LastName = "3333";
-            newData.Nickname = "4444";
+            ContactData newContactData = new ContactData("zzz", "xxxx");
+            newContactData.LastName = "3333";
+            newContactData.Nickname = "4444";
 
             List<ContactData> oldContacts = ContactData.GetAll();
             ContactData oldContactData = oldContacts[0];
 
             app.Contacts.CreateContactIfElementPresent();
-            app.Contacts.Modify(0, newData);
+            app.Contacts.Modify(oldContactData, newContactData);
 
 
             List<ContactData> newContacts = ContactData.GetAll();
 
 
-            oldContacts[0].FirstName = newData.FirstName;
-            oldContacts[0].LastName = newData.LastName;
+            oldContactData.FirstName = newContactData.FirstName;
+            oldContactData.LastName = newContactData.LastName;
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
@@ -39,8 +39,8 @@ namespace addressbook_web_tests
             {
                 if (contact.Id == oldContactData.Id)
                 {
-                    Assert.AreEqual(newData.FirstName, contact.FirstName);
-                    Assert.AreEqual(newData.LastName, contact.LastName);
+                    Assert.AreEqual(newContactData.FirstName, contact.FirstName);
+                    Assert.AreEqual(newContactData.LastName, contact.LastName);
                 }
             }
         }

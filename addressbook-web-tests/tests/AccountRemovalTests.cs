@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace addressbook_web_tests
 {
     [TestFixture]
-    public class AccountRemovalTests : AuthTestBase
+    public class AccountRemovalTests : ContactTestBase
     {
 
         [Test]
@@ -18,14 +18,14 @@ namespace addressbook_web_tests
         {
             app.Contacts.CreateContactIfElementPresent();
 
-            List<ContactData> oldContacts = app.Contacts.GetContactsList();
+            List<ContactData> oldContacts = ContactData.GetAll();
 
             ContactData toBeRemoved = oldContacts[0];
 
 
             app.Contacts.Remove(toBeRemoved);
 
-            List<ContactData> newContacts = app.Contacts.GetContactsList();
+            List<ContactData> newContacts = ContactData.GetAll();
 
             oldContacts.RemoveAt(0);
             Assert.AreEqual(oldContacts, newContacts);

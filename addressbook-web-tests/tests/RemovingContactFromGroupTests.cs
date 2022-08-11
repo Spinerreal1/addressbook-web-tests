@@ -13,7 +13,7 @@ namespace addressbook_web_tests
         public void TestRemovingContactFromGroup()
         {
             app.Navigator.GoToGroupsPage();
-            app.Groups.CreateGroupIfElementNotPresent();
+            app.GroupHelper.CreateGroupIfElementNotPresent();
             app.Contacts.CreateContactIfElementNotPresent();
 
             GroupData group = GroupData.GetAll()[0];

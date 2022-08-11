@@ -23,13 +23,9 @@ namespace addressbook_web_tests
 
             app.Navigator.GoToGroupsPage();
             app.GroupHelper.CreateGroupIfElementPresent();
-            app.GroupHelper.Remove(0);
-
-            Assert.AreEqual(oldGroups.Count - 1, app.GroupHelper.GetGroupCount());
-
-            List<GroupData> newGroups = GroupData.GetAll();
-
             
+            List<GroupData> newGroups = GroupData.GetAll();
+           
             oldGroups.RemoveAt(0);
             Assert.AreEqual(oldGroups, newGroups);
 

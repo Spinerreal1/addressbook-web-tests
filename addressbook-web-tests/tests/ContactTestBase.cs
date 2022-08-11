@@ -21,7 +21,6 @@ namespace addressbook_web_tests
                 fromDB.Sort();
                 Assert.AreEqual(fromUI, fromDB);
             }
-
         }
     }
 }

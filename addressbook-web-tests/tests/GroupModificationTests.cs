@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using NUnit.Framework;
 using OpenQA.Selenium;
+
 
 namespace addressbook_web_tests
 {
@@ -12,27 +15,25 @@ namespace addressbook_web_tests
     public class GroupModificationTests : GroupTestBase
     {
         [Test]
-        public void GroupModificationTest() 
+        public void GroupModificationTest()
         {
-            GroupData newData = new GroupData("zzz");
-            newData.Header = "abc";
-            newData.Footer = "aaa";
+            app.Navigator.GoToGroupsPage();
+            app.GroupHelper.CreateGroupIfElementPresent();
+
+            GroupData newData = new GroupData("test name upd");
+            newData.Header = null;
+            newData.Footer = null;
 
             List<GroupData> oldGroups = GroupData.GetAll();
             GroupData oldData = oldGroups[0];
 
-            app.Navigator.GoToGroupsPage();
-            app.GroupHelper.CreateGroupIfElementPresent();
-
-            app.GroupHelper.Modify(0, newData);
-
-            Assert.AreEqual(oldGroups.Count, app.GroupHelper.GetGroupCount());
+            app.GroupHelper.Modify(oldData, newData);
 
             List<GroupData> newGroups = GroupData.GetAll();
-            oldGroups[0].Name = newData.Name;
+            oldData.Name = newData.Name;
             oldGroups.Sort();
             newGroups.Sort();
-            Assert.AreEqual(oldGroups.Count, newGroups.Count);
+            Assert.AreEqual(oldGroups, newGroups);
 
             foreach (GroupData group in newGroups)
             {
@@ -42,6 +43,5 @@ namespace addressbook_web_tests
                 }
             }
         }
-
-    }
+        }
 }

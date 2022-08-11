@@ -10,6 +10,7 @@ using OpenQA.Selenium.Support.UI;
 using System.Text.RegularExpressions;
 
 
+
 namespace addressbook_web_tests
 {
     public class ContactHelper : HelperBase
@@ -162,6 +163,31 @@ namespace addressbook_web_tests
             EditContact(p);
             ChangeAccountForm(newData);
             SubmitAccountModify();
+            return this;
+        }
+        public ContactHelper Modify(ContactData oldContactData, ContactData newContactData)
+        {
+            manager.Navigator.GoToHomePage();
+            OpenHomePage();
+            SelectContact(oldContactData.Id);
+            EditContact(oldContactData.Id);
+            ChangeAccountForm(newContactData);
+            SubmitAccountModify();
+            return this;
+        }
+
+        public ContactHelper EditContact(string id)
+        {
+            IList<IWebElement> lines = driver.FindElements(By.Name("entry"));
+            foreach (IWebElement line in lines)
+            {
+                string idForm = line.FindElement(By.XPath("td[1]")).FindElement(By.TagName("input")).GetAttribute("id");
+                if (idForm == id)
+                {
+                    line.FindElement(By.XPath("td[8]")).Click();
+                    break;
+                }
+            }
             return this;
         }
 

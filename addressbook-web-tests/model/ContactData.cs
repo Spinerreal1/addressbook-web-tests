@@ -13,7 +13,7 @@ namespace addressbook_web_tests
     {
         public string allPhones;
         public string allEmails;
-        public String allData;
+        public string allData;
         public ContactData(string firstname, string lastname)
         {
             FirstName = firstname;

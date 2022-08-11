@@ -17,6 +17,11 @@ namespace addressbook_web_tests
         {
         }
 
+        internal void CreateGroupIfElementNotPresent()
+        {
+            throw new NotImplementedException();
+        }
+
         public GroupHelper(ApplicationManager manager, string baseURL) : this(manager)
         {
         }
@@ -81,6 +86,16 @@ namespace addressbook_web_tests
         {
             manager.Navigator.GoToGroupsPage();
             SelectGroup(p);
+            InitNewGroupModification();
+            FillGroupForm(newData);
+            SubmitGroupModification();
+            ReturnToGroupsPage();
+            return this;
+        }
+        public GroupHelper Modify(GroupData oldData, GroupData newData)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(oldData.Id);
             InitNewGroupModification();
             FillGroupForm(newData);
             SubmitGroupModification();

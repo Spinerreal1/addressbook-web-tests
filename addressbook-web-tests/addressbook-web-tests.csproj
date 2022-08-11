@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\linq2db.MySql.4.1.1\build\linq2db.MySql.props" Condition="Exists('..\packages\linq2db.MySql.4.1.1\build\linq2db.MySql.props')" />
   <Import Project="..\packages\NUnitTestAdapter.2.3.0\build\NUnitTestAdapter.props" Condition="Exists('..\packages\NUnitTestAdapter.2.3.0\build\NUnitTestAdapter.props')" />
   <Import Project="..\packages\NUnit3TestAdapter.4.2.1\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.4.2.1\build\net35\NUnit3TestAdapter.props')" />
   <Import Project="..\packages\MSTest.TestAdapter.2.2.7\build\net45\MSTest.TestAdapter.props" Condition="Exists('..\packages\MSTest.TestAdapter.2.2.7\build\net45\MSTest.TestAdapter.props')" />
@@ -57,8 +56,8 @@
     <Reference Include="K4os.Hash.xxHash, Version=1.0.6.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
       <HintPath>..\packages\K4os.Hash.xxHash.1.0.6\lib\net46\K4os.Hash.xxHash.dll</HintPath>
     </Reference>
-    <Reference Include="linq2db, Version=4.1.1.0, Culture=neutral, PublicKeyToken=e41013125f9e410a, processorArchitecture=MSIL">
-      <HintPath>..\packages\linq2db.4.1.1\lib\net472\linq2db.dll</HintPath>
+    <Reference Include="linq2db, Version=3.6.0.0, Culture=neutral, PublicKeyToken=e41013125f9e410a, processorArchitecture=MSIL">
+      <HintPath>..\packages\linq2db.3.6.0\lib\net472\linq2db.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -170,22 +169,6 @@
     <None Include="groups.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="LinqToDB.Templates\DataAnnotations.ttinclude" />
-    <None Include="LinqToDB.Templates\DataModel.ttinclude" />
-    <None Include="LinqToDB.Templates\EditableObject.ttinclude" />
-    <None Include="LinqToDB.Templates\Equatable.ttinclude" />
-    <None Include="LinqToDB.Templates\Humanizer.ttinclude" />
-    <None Include="LinqToDB.Templates\LinqToDB.MySql.Tools.ttinclude" />
-    <None Include="LinqToDB.Templates\LinqToDB.MySql.ttinclude" />
-    <None Include="LinqToDB.Templates\LinqToDB.Tools.ttinclude" />
-    <None Include="LinqToDB.Templates\LinqToDB.ttinclude" />
-    <None Include="LinqToDB.Templates\MultipleFiles.ttinclude" />
-    <None Include="LinqToDB.Templates\NotifyDataErrorInfo.ttinclude" />
-    <None Include="LinqToDB.Templates\NotifyPropertyChanged.ttinclude" />
-    <None Include="LinqToDB.Templates\ObsoleteAttributes.ttinclude" />
-    <None Include="LinqToDB.Templates\PluralizationService.ttinclude" />
-    <None Include="LinqToDB.Templates\T4Model.ttinclude" />
-    <None Include="LinqToDB.Templates\Validation.ttinclude" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -199,7 +182,6 @@
     <Content Include="groups.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="LinqToDB.Templates\CopyMe.MySql.tt.txt" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
@@ -240,7 +222,6 @@
     <Error Condition="!Exists('..\packages\MSTest.TestAdapter.2.2.7\build\net45\MSTest.TestAdapter.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSTest.TestAdapter.2.2.7\build\net45\MSTest.TestAdapter.targets'))" />
     <Error Condition="!Exists('..\packages\NUnit3TestAdapter.4.2.1\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.4.2.1\build\net35\NUnit3TestAdapter.props'))" />
     <Error Condition="!Exists('..\packages\NUnitTestAdapter.2.3.0\build\NUnitTestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnitTestAdapter.2.3.0\build\NUnitTestAdapter.props'))" />
-    <Error Condition="!Exists('..\packages\linq2db.MySql.4.1.1\build\linq2db.MySql.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\linq2db.MySql.4.1.1\build\linq2db.MySql.props'))" />
   </Target>
   <Import Project="..\packages\MSTest.TestAdapter.2.2.7\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\packages\MSTest.TestAdapter.2.2.7\build\net45\MSTest.TestAdapter.targets')" />
 </Project>

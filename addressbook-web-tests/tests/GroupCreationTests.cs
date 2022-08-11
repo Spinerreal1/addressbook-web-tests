@@ -40,7 +40,7 @@ namespace addressbook_web_tests
             {
                 string[] parts = l.Split(',');
                 groups.Add(new GroupData(parts[0])
-                {
+                    {
                     Header = parts[1],
                     Footer = parts[2]
                 });
@@ -104,7 +104,6 @@ namespace addressbook_web_tests
             List<GroupData> fromUi = app.GroupHelper.GetGroupList();
             DateTime end = DateTime.Now;
             System.Console.Out.WriteLine(end.Subtract(start));
-
             start = DateTime.Now;
             List<GroupData> fromDb = GroupData.GetAll();
             end = DateTime.Now;

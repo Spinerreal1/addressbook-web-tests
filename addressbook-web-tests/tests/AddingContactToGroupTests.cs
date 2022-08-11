@@ -12,6 +12,10 @@ namespace addressbook_web_tests
         [Test]
         public void TestAddingContactToGroup()
         {
+            app.Navigator.GoToGroupsPage();
+            app.GroupHelper.CreateGroupIfElementNotPresent();
+            app.Contacts.CreateContactIfElementNotPresent();
+
             GroupData group = GroupData.GetAll()[0];
             List<ContactData> oldList = group.GetContacts();
             ContactData contact = ContactData.GetAll().Except(oldList).First();
