@@ -22,7 +22,7 @@ namespace addressbook_web_tests
             app.GroupHelper.Remove(toBeRemoved);
 
             app.Navigator.GoToGroupsPage();
-            app.GroupHelper.CreateGroupIfElementPresent();
+            app.GroupHelper.CreateGroupIfElementNotPresent();
             
             List<GroupData> newGroups = GroupData.GetAll();
            

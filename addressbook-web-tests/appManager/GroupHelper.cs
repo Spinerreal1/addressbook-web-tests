@@ -17,11 +17,6 @@ namespace addressbook_web_tests
         {
         }
 
-        internal void CreateGroupIfElementNotPresent()
-        {
-            throw new NotImplementedException();
-        }
-
         public GroupHelper(ApplicationManager manager, string baseURL) : this(manager)
         {
         }
@@ -167,7 +162,7 @@ namespace addressbook_web_tests
             return this;
         }
 
-        public GroupHelper CreateGroupIfElementPresent()
+        public GroupHelper CreateGroupIfElementNotPresent()
         {
             if (driver.Url == baseURL + "/addressbook/group.php"
                && !IsElementPresent(By.Name("selected[]")))

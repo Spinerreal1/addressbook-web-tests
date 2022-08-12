@@ -18,7 +18,7 @@ namespace addressbook_web_tests
         public void GroupModificationTest()
         {
             app.Navigator.GoToGroupsPage();
-            app.GroupHelper.CreateGroupIfElementPresent();
+            app.GroupHelper.CreateGroupIfElementNotPresent();
 
             GroupData newData = new GroupData("test name upd");
             newData.Header = null;
