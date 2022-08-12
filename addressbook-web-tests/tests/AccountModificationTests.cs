@@ -22,7 +22,7 @@ namespace addressbook_web_tests
             List<ContactData> oldContacts = ContactData.GetAll();
             ContactData oldContactData = oldContacts[0];
 
-            app.Contacts.CreateContactIfElementPresent();
+            app.Contacts.CreateContactIfElementNotPresent();
             app.Contacts.Modify(oldContactData, newContactData);
 
 

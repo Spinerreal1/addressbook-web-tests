@@ -16,7 +16,7 @@ namespace addressbook_web_tests
         [Test]
         public void AccountRemovalTest()
         {
-            app.Contacts.CreateContactIfElementPresent();
+            app.Contacts.CreateContactIfElementNotPresent();
 
             List<ContactData> oldContacts = ContactData.GetAll();
 

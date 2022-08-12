@@ -21,11 +21,6 @@ namespace addressbook_web_tests
             this.baseURL = baseURL;
         }
 
-        public void CreateContactIfElementNotPresent()
-        {
-            throw new NotImplementedException();
-        }
-
         public void AddContactToGroup(ContactData contact, GroupData group)
         {
             manager.Navigator.GoToHomePage();
@@ -37,9 +32,13 @@ namespace addressbook_web_tests
                 .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
         }
 
-        internal void RemoveContactFromGroup(ContactData contact, GroupData group)
+        public ContactHelper RemoveContactFromGroup(ContactData contact, GroupData group)
         {
-            throw new NotImplementedException();
+            manager.Navigator.GoToHomePage();
+            SelectGroupFilter(group.Name);
+            SelectContact(contact.Id);
+            CommitRemovingContactFromGroup();
+            return this;
         }
 
         public void SelectContact(string contactId)
@@ -295,7 +294,7 @@ namespace addressbook_web_tests
             driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[" + (index + 2) + "]/td[8]/a/img")).Click();
             return this;
         }
-        public ContactHelper CreateContactIfElementPresent()
+        public ContactHelper CreateContactIfElementNotPresent()
         {
             if (driver.Url == baseURL + "/addressbook/"
                && !IsElementPresent(By.Name("selected[]")))
@@ -329,6 +328,16 @@ namespace addressbook_web_tests
             driver.FindElements(By.Name("entry"))[p]
                 .FindElements(By.TagName("td"))[6]
                 .FindElement(By.TagName("a")).Click();
+            return this;
+        }
+        public ContactHelper CommitRemovingContactFromGroup()
+        {
+            driver.FindElement(By.Name("remove")).Click();
+            return this;
+        }
+        public ContactHelper SelectGroupFilter(string name)
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText(name);
             return this;
         }
 
